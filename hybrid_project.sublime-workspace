@@ -1,0 +1,268 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"send",
+				"send_sock"
+			],
+			[
+				"rev",
+				"recv_sock"
+			],
+			[
+				"hos",
+				"host_sock"
+			],
+			[
+				"sock",
+				"socket"
+			],
+			[
+				"class",
+				"class_members"
+			],
+			[
+				"calss",
+				"class_members"
+			],
+			[
+				"div",
+				"divisor"
+			],
+			[
+				"find",
+				"find_node"
+			],
+			[
+				"c",
+				"count_divis_by"
+			],
+			[
+				"node",
+				"node"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/ET/Google Drive/Dropbox/hybrid-life/pi3d/shaders/conway.vs",
+		"/Users/ET/Google Drive/Dropbox/hybrid-life/pi3d/shaders/conway.fs",
+		"/Users/ET/Google Drive/Dropbox/hybrid-life/README.md",
+		"/Users/ET/Google Drive/Dropbox/hybrid-life/pi3d/demos/MPIConway.py",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/cblock.h",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/cmdLine.cpp",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/DECLARATION",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/Makefile",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/MergeSort.cpp",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/mSortDriver.cpp",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/runs.sh",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/teameval.txt",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/Timer.cpp",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/verify.cpp",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/CSE 160/Homework/HW1/batch-job.sh",
+		"/Users/ET/Google Drive/Dropbox/hybrid-life/pi3d/demos/socket_conway.py",
+		"/Volumes/NO NAME/Am I Smart.txt",
+		"/Users/ET/Google Drive/Dropbox/hybrid-life/pi3d/demos/Conway.py",
+		"/Users/ET/Google Drive/Dropbox/hybrid-life/run.py",
+		"/Users/ET/Google Drive/Dropbox/UCSD Things/Homework.txt",
+		"/Users/ET/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/ET/Desktop/Subscriptions.opml",
+		"/Users/ET/Dropbox/Personal Notes/Simpsons watched.txt",
+		"/Users/ET/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Volumes/Malkazar/Legend of Kora xbox/Legend of Kora/The.Legend.Of.Korra.S02E02.1080p.WEB-DL.H264-PublicHD/Downloaded From PublicHD.SE.txt",
+		"/Users/ET/Dropbox/Personal Notes/Things I want to buy.txt",
+		"/Users/ET/Dropbox/PlainText/TODO.txt",
+		"/Users/ET/Dropbox/Notes on Teaching.txt",
+		"/Users/ET/Downloads/C++ Concurrency in Action Practical Multithreading/Paying Sites only.url",
+		"/Users/ET/Dropbox/Personal Notes/Names.txt",
+		"/Users/ET/Downloads/matlab_R2013a_student_maci64_installer/installer_input.txt",
+		"/Users/ET/Desktop/Not Space Invaders/step2.py",
+		"/Users/ET/Desktop/Not Space Invaders/main.py",
+		"/Users/ET/Desktop/Not Space Invaders/Building space invaders.txt",
+		"/Users/ET/Desktop/Not Space Invaders/step3.py",
+		"/Users/ET/Dropbox/repo/pygame/Bouncing_Ball/bouncing_ball.py",
+		"/Users/ET/Dropbox/repo/Hardware/RPi.GPIO event detection.py",
+		"/Users/ET/repo/Hardware/simple_switch.py",
+		"/Users/ET/repo/Hardware/list_of_lights.py",
+		"/Users/ET/repo/Hardware/crash_python.py",
+		"/Users/ET/repo/Hardware/Simple_Blink.py",
+		"/Users/ET/repo/Hardware/blinking light.py",
+		"/Users/ET/Dropbox/repo/Hardware/RPi.GPIO.py",
+		"/Users/ET/repo/pygame/PyBalls 2.0.1/pyballs 2.0.py",
+		"/Users/ET/repo/Hardware/RPi.GPIO.py",
+		"/Users/ET/repo/Linux Commands cheat sheets.txt",
+		"/Users/ET/repo/bouncing_ball.py",
+		"/Users/ET/repo/Pygame/python_games/inkspill.py",
+		"/Users/ET/Dropbox/Personal Notes/Stuff needed for teaching",
+		"/Users/ET/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/ET/Downloads/Iron Man IV v1.2/readme.txt",
+		"/Users/ET/Dropbox/Personal Notes/Blog/It's irrelevant.txt",
+		"/Users/ET/Dropbox/binary.py",
+		"/Users/ET/Dropbox/README.txt"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"sys.argv[2]",
+			"MPI.",
+			"GPIO",
+			",",
+			"Lesson",
+			"lesson",
+			"Lesson",
+			"10"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.426827005119,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"project": "hybrid_project.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 215.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}
