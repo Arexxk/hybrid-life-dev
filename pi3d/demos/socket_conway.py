@@ -21,15 +21,9 @@ def numpy_pil_to_buf(arr, w, h):
       for RGB_val in RGB_object:
         img[idx] = ctypes.c_char( chr(RGB_val) )
         idx += 1
+  # [row for row in arr for RGB_object in row for RGB_val in RGB_object ]
   return img
 
-# rdbuf = ''
-# while True:
-#     rdbuf += sock.recv(4096)
-#     lines = rdbuf.split('\n')
-#     rdbuf = lines[-1]
-#     for line in lines[:-1]:
-#         dostuff(line)  
 def receive_data(recv_sock):
   # Parameter : recv_sock - the socket where we want to receive data
   # return : the entire pickled string
@@ -40,29 +34,42 @@ def receive_data(recv_sock):
     rdbuf += recv_sock.recv(150000)
     # print 'rdbuff is ' + rdbuf
     split = rdbuf.split(SOCKET_DEL) # split at newline, as per our custom protocol
-    # print 'split is ' 
-    # print split
-    # print len(split)
-    # time.sleep(1)
     if len(split) != 2: # it should be 2 elements big if it got the whole message
       pass
     else:
       return split[0] # it will be the first element, the newline will be 
                       # removed so it should pickle correctly
+def logtimes(time0, time1, the_dict):
+  the_dict['time'] += time1 - time0
+  the_dict['ev'] += 1
 
+# logging files and varibles
+LOGFILE = open('demos/logfile.txt', 'w')
+glpixel = {'time' : 0, 'ev' : 0, 'name': 'GLREADPIXELS'} # tuple to make sure we divide by the true evolutions
+num_mat_time = {'time' : 0, 'ev' : 0, 'name': 'Making numpy matrix'}
+picklepack = {'time' : 0, 'ev' : 0, 'name': 'Packing data as pickle'}
+recvdata = {'time' : 0, 'ev' : 0, 'name': 'Receving the data through the socket'}
+unpickle = {'time' : 0, 'ev' : 0, 'name': 'Unpacking data as pickle'}
+numpy_pil_buf_time = {'time' : 0, 'ev' : 0, 'name': 'Numpy to pil to buffer loop'}
+
+logvars = (glpixel, num_mat_time, picklepack, recvdata, unpickle, numpy_pil_buf_time)
 
 MY_IP = str(sys.argv[1])
 THERE_IP = str(sys.argv[2])
 RECV_PORT = 20000
 SEND_PORT = 20001
 SOCKET_DEL = '$*etisawesome*$'
-WIDTH = 1000
-HEIGHT = 1000
+WIDTH = 100
+HEIGHT = 100
 DISPLAY = pi3d.Display.create(w=WIDTH, h=HEIGHT)
 CAMERA = pi3d.Camera(is_3d=False)
 shader = pi3d.Shader("shaders/conway") # How the game is calculated.
 
-# print sys.argv[1]
+# # logging files and varibles
+# LOGFILE = open('logfile.txt', 'w')
+# GLREADPIXELS = {'time' : 0, 'ev' : 0, 'name': 'GLREADPIXELS'} # tuple to make sure we divide by the true evolutions
+# logvars = [GLREADPIXELS]
+
 
 # some logic to see where it is, will have to be read from somewhere I think
 if MY_IP == '10.10.0.1':
@@ -93,6 +100,7 @@ while t < 100:
 
 # accept the connection that should be queued from above
 recv_sock, addr = host_sock.accept()
+print addr
 
 try:
 
@@ -107,7 +115,7 @@ try:
   ti = 0 # variable to toggle between two textures
   img = (ctypes.c_char * (WIDTH * HEIGHT * 3))() # to hold pixels
 
-  #open("time_serialGPU/time_serial"+"on"+str(WIDTH)+"x"+str(HEIGHT)+".txt", "w").write("")
+  # open("time_serialGPU/time_serial"+"on"+str(WIDTH)+"x"+str(HEIGHT)+".txt", "w").write("")
   timetotal0 = time.clock()
   evolutions = 0
 
@@ -124,13 +132,18 @@ try:
     
     ti = (ti+1) % 2
     # read image from buffer
+    timetotal0 = time.clock()
     pi3d.opengles.glReadPixels(0, 0, WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE,
                           ctypes.byref(img))
+    logtimes(timetotal0, time.clock(), glpixel) 
 
     im_from_buf = Image.frombuffer('RGB', (WIDTH, HEIGHT), img, 'raw', 'RGB', 0, 1)
 
     # turn to numpy matrix for easy manipulation?
+    timetotal0 = time.clock()
     num_mat = numpy.array(im_from_buf)
+    logtimes(timetotal0, time.clock(), num_mat_time)
+
     # Assign it's edges remember the outer edges are the other edges, the nodes real
     # edges are actually one pixel in
     my_top = num_mat[1]
@@ -139,23 +152,39 @@ try:
     my_rig = num_mat[:,len(num_mat[0])-2]
 
     if position == 'l':
-      # output = open('data.pkl', 'wb')
-      # my_rig = reveive_data(recv_sock) # receive the right data
+      timetotal0 = time.clock()
       my_rig = cPickle.dumps(my_rig, cPickle.HIGHEST_PROTOCOL) + SOCKET_DEL
-      send_sock.sendall(my_rig)
-      x = receive_data(recv_sock)
-      num_mat[:,1] = cPickle.loads(x)
-      # print num_mat[:,1]
-      # num_mat[:,0] = recv_sock.recv(1024)
-    else:
-      my_lef = cPickle.dumps(my_lef, cPickle.HIGHEST_PROTOCOL) + SOCKET_DEL
-      send_sock.sendall(my_lef)
-      x = receive_data(recv_sock)
-      num_mat[:,len(num_mat[0])-1] = cPickle.loads(x)
-      # print num_mat[:,len(num_mat[0])-1]
-      # num_mat[:,len(num_mat[0])-1] = recv_sock.recv(1024)
+      logtimes(timetotal0, time.clock(), picklepack)
 
-    # img = numpy_pil_to_buf(num_mat, WIDTH, HEIGHT)
+      send_sock.sendall(my_rig)
+
+      timetotal0 = time.clock()
+      x = receive_data(recv_sock)
+      logtimes(timetotal0, time.clock(), recvdata)
+
+      timetotal0 = time.clock()
+      num_mat[:,1] = cPickle.loads(x)
+      logtimes(timetotal0, time.clock(), unpickle)
+      # print num_mat[:,1]
+
+    else:
+      timetotal0 = time.clock()
+      my_lef = cPickle.dumps(my_lef, cPickle.HIGHEST_PROTOCOL) + SOCKET_DEL
+      logtimes(timetotal0, time.clock(), picklepack)
+
+      send_sock.sendall(my_lef)
+
+      timetotal0 = time.clock()
+      x = receive_data(recv_sock)
+      logtimes(timetotal0, time.clock(), recvdata)
+
+      timetotal0 = time.clock()
+      num_mat[:,len(num_mat[0])-1] = cPickle.loads(x)
+      logtimes(timetotal0, time.clock(), unpickle)
+
+    timetotal0 = time.clock()
+    img = numpy_pil_to_buf(num_mat, WIDTH, HEIGHT)
+    logtimes(timetotal0, time.clock(), numpy_pil_buf_time)
 
 
     pi3d.opengles.glBindTexture(GL_TEXTURE_2D, tex[ti]._tex)
@@ -166,7 +195,7 @@ try:
     send_sock.send('sync') # sync the nodes
     recv_sock.recv(30)
     # time.sleep(1)
-except UnpicklingError as u:
+except cPickle.UnpicklingError as u:
   print 'pickle error'
   traceback.print_exc(file=sys.stdout)
   print 'x(the pickled module to be loaded is '
@@ -175,8 +204,12 @@ except UnpicklingError as u:
   send_sock.close()
   recv_sock.close()
 except:
-  print 'exception happened, printing traceback and closing network connections'
   traceback.print_exc(file=sys.stdout)
+  print 'exception happened, printing traceback, writing to the log and closing network connections'
+  for var in logvars:
+    var['time'] = var['time']/var['ev']
+    LOGFILE.write(var['name'] + ' = ' + str(var['time']) + '\n') 
+  LOGFILE.close()
   send_sock.close()
   recv_sock.close()
   print 'exiting'
